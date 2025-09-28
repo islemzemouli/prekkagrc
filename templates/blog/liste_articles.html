@@ -1,0 +1,104 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+    <!-- Page header -->
+    <section
+      class="page-header-section set-bg"
+      data-setbg="{% static 'img/header-bg.jpg' %}"
+    >
+      <div class="container">
+        <h1 class="header-title">News<span>.</span></h1>
+      </div>
+    </section>
+
+    <section class="page-section spad">
+      <div class="container">
+        <div class="row">
+          <!-- Main blog list -->
+          <div class="col-lg-9 col-md-12">
+            {% for article in articles %}
+            <div class="blog-post">
+              <div class="thumb">
+                {% if article.image %}
+                <a href="{{ article.get_absolute_url }}">
+                  <img
+                    src="{{ article.image.url }}"
+                    alt="{{ article.titre }}"
+                  />
+                </a>
+                {% endif %}
+              </div>
+              <div class="blog-content">
+                <div class="post-date">
+                  {{ article.date_creation|date:"d M Y" }}
+                </div>
+                <h2>
+                  <a href="{{ article.get_absolute_url }}">
+                    {{ article.titre }}
+                  </a>
+                </h2>
+                <div class="post-meta">
+                  <a href="#">
+                    {{ article.categorie }} <i class="fa fa-newspaper-o"></i>
+                  </a>
+                </div>
+                <p>{{ article.extrait }}</p>
+              </div>
+            </div>
+            {% empty %}
+            <p>Aucun article disponible pour le moment.</p>
+            {% endfor %}
+
+            <!-- Pagination -->
+            <div class="pagination">
+              {% if articles.has_previous %}
+              <a href="?page={{ articles.previous_page_number }}"
+                >« Précédent</a
+              >
+              {% endif %}
+              <span class="active">{{ articles.number }}</span>
+              {% if articles.has_next %}
+              <a href="?page={{ articles.next_page_number }}">Suivant »</a>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="col-lg-3 col-md-5 mt-5 mt-lg-0 sidebar">
+            <!-- Search widget -->
+            <div class="widget-area">
+              <form method="get" class="search">
+                <input
+                  type="text"
+                  name="q"
+                  placeholder="Entrer un mot-clé"
+                  value="{{ request.GET.q }}"
+                />
+                <button><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+
+            <!-- Categories widget -->
+            <div class="widget-area">
+              <h3 class="widget-title">Catégories</h3>
+              <ul>
+                <li><a href="{% url 'blog:liste_articles' %}">tout</a></li>
+
+                {% for cat in categories %}
+                <li>
+                  <a href="{% url 'blog:articles_by_categorie' cat %}"
+                    >{{ cat }}</a
+                  >
+
+                  >
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+
+    <section
+      class="page-header-section set-bg"
+      data-setbg="{% static 'img/header-bg.jpg' %}"
+    >
+      <div class="container">
+        <h1 class="header-title">Ajouter témoignage<span>.</span></h1>
+      </div>
+    </section>
+
+    <section class="ajouter-temoignage-section spad">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h1>Soumettre un témoignage</h1>
+
+            {% if success %}
+            <div class="alert alert-success">
+              Merci pour votre témoignage ! Il est maintenant visible.
+            </div>
+            {% endif %} {% if error %}
+            <div class="alert alert-danger">
+              Il y a des erreurs dans votre formulaire. Veuillez corriger et
+              réessayer.
+            </div>
+            {% endif %}
+
+            <form method="POST" novalidate>
+              {% csrf_token %}
+
+              <p>
+                {{ form.nom.label_tag }}<br />
+                {{ form.nom }} {% if form.nom.errors %}
+                <span class="text-danger">{{ form.nom.errors }}</span>
+                {% endif %}
+              </p>
+
+              <p>
+                {{ form.role.label_tag }}<br />
+                {{ form.role }} {% if form.role.errors %}
+                <span class="text-danger">{{ form.role.errors }}</span>
+                {% endif %}
+              </p>
+
+              <p>
+                {{ form.avis.label_tag }}<br />
+                {{ form.avis }} {% if form.avis.errors %}
+                <span class="text-danger">{{ form.avis.errors }}</span>
+                {% endif %}
+              </p>
+
+              <p>
+                {{ form.email.label_tag }}<br />
+                {{ form.email }} {% if form.email.errors %}
+                <span class="text-danger">{{ form.email.errors }}</span>
+                {% endif %}
+              </p>
+
+              <button type="submit" class="btn btn-primary">Envoyer</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% endblock %}
+  </body>
+</html>

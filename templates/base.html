@@ -1,0 +1,139 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>prekkagrc</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="prekkagrc" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <link href="{% static 'img/logo.png' %}" rel="shortcut icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Header section start -->
+    <header class="header-area">
+      <a href="{% url 'accueil' %}" class="logo-area">
+        <img src="{% static 'img/logo.png' %}" alt="Prekka GRC Logo" />
+      </a>
+      <div class="nav-switch">
+        <i class="fa fa-bars"></i>
+      </div>
+      <div class="phone-number">+675 334 567 223</div>
+      <nav class="nav-menu">
+        <ul>
+          <li class=><a href="{% url 'accueil' %}">accueil</a></li>
+          <li><a href="{% url 'apropos' %}">À propos</a></li>
+          <li><a href="{% url 'service_list' %}">Services</a></li>
+          <li><a href="{% url 'realisations_liste' %}">realisations</a></li>
+<li><a href="{% url 'blog:liste_articles' %}">Blog</a></li>
+          <li><a href="{% url 'contact' %}">contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Header section end -->
+
+
+    <!-- Main content -->
+    {% block content %}
+
+      <!-- Child templates will insert their content here -->
+    {% endblock %}
+
+
+  <!-- Section Pied de page début -->
+<footer class="footer-section">
+  <div class="footer-social">
+    <div class="social-links">
+      {% for link in social_links %}
+      <a href="{{ link.url }}" target="_blank" title="{{ link.titre }}">
+        <img
+          class="social-icon"
+          src="{{ link.icone.url }}"
+          alt="{{ link.titre }}"
+        />
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 offset-lg-3">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="footer-item">
+              <ul>
+                <li><a href="{% url 'accueil' %}">Accueil</a></li>
+                <li><a href="{% url 'apropos' %}">À propos</a></li>
+                <li><a href="{% url 'service_list' %}">Services</a></li>
+                <li><a href="{% url 'realisations_liste' %}">realisations</a></li>
+      <li><a href="{% url 'blog:liste_articles' %}">Blog</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="footer-item">
+              <ul>
+                <li><a href="#">Plan du site</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="footer-item">
+              <ul>
+                <li><a href="{% url 'contact' %}">contactez-nous</a></li>
+                <li><a href="{% url 'ajouter_temoignage' %}">Témoignages clients</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Le lien vers Colorlib ne peut pas être supprimé. Le modèle est sous licence CC BY 3.0. -->
+  <div class="copyright">
+    Copyright &copy;
+    Tous droits réservés.
+  </div>
+</footer>
+<!-- Section Pied de page fin -->
+
+
+    <!--====== Javascripts & Jquery ======-->
+    <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.owl-filter.js' %}"></script>
+    <script src="{% static 'js/circle-progress.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/mixitup.min.js' %}"></script>
+  </body>
+</html>
+
+  </body>
+</html>

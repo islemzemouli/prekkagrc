@@ -1,0 +1,79 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<!-- Page header section start -->
+<section
+  class="page-header-section set-bg"
+  data-setbg="{% static 'img/header-bg.jpg' %}"
+>
+  <div class="container">
+    <h1 class="header-title">Contact<span>.</span></h1>
+  </div>
+</section>
+<!-- Page header section end -->
+
+<!-- Page section start -->
+<section class="page-section pt100">
+  <div class="container pb100">
+    <div class="section-title pt-5">
+      <h1>Contactez-nous</h1>
+      <p>
+        Vous avez un projet ou une question ? N'hésitez pas à nous envoyer un
+        message, nous vous répondrons rapidement.
+      </p>
+    </div>
+    <div class="row">
+      <!-- Informations de contact -->
+      <div class="col-lg-3 contact-info mb-5 mb-lg-0">
+        <p>Adresse : 1481 Rue Exemple, Batna, Algérie</p>
+        <p>Téléphone : +213 123 456 789</p>
+        <p>Email : contact@prekkagrc.com</p>
+        <div class="cf-social">
+          {% for link in social_links %}
+          <a href="{{ link.url }}" target="_blank" title="{{ link.titre }}">
+            <img
+              class="social-icon"
+              src="{{ link.icone.url }}"
+              alt="{{ link.titre }}"
+            />
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Formulaire de contact -->
+      <div class="col-lg-9">
+        <form method="POST" class="contact-form">
+          {% csrf_token %}
+          <input
+            type="text"
+            name="nom"
+            placeholder="Entrez votre nom"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Entrez votre adresse email"
+            required
+          />
+          <textarea
+            name="message"
+            placeholder="Votre message..."
+            required
+          ></textarea>
+          <button type="submit" class="site-btn sb-dark">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carte -->
+  <div class="map-area" id="map-canvas"></div>
+</section>
+<!-- Page section end -->
+
+<!-- Chargement Google Maps et script personnalisé -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0YyDTa0qqOjIerob2VTIwo_XVMhrruxo"></script>
+<script src="{% static 'js/map.js' %}"></script>
+
+{% endblock %}

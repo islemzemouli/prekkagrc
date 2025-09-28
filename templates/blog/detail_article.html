@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<!-- Page header -->
+<section
+  class="page-header-section set-bg"
+  data-setbg="{% static 'img/header-bg.jpg' %}"
+>
+  <div class="container">
+    <h1 class="header-title">{{ article.titre }}<span>.</span></h1>
+  </div>
+</section>
+
+<section class="page-section spad">
+  <div class="container">
+    <div class="row">
+      <!-- Main article content -->
+      <div class="col-lg-9 col-md-12">
+        <div class="blog-post">
+          {% if article.image %}
+          <div class="thumb">
+            <img src="{{ article.image.url }}" alt="{{ article.titre }}" />
+          </div>
+          {% endif %}
+          <div class="blog-content">
+            <div class="post-date">
+              {{ article.date_creation|date:"d M Y" }}
+            </div>
+            <h2>{{ article.titre }}</h2>
+            <div class="post-meta">
+              <span
+                >{{ article.categorie }} <i class="fa fa-newspaper-o"></i
+              ></span>
+            </div>
+            <p>{{ article.contenu|linebreaks }}</p>
+          </div>
+        </div>
+
+     
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

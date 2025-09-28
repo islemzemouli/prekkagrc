@@ -1,0 +1,22 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Database
+db.sqlite3
+
+# Static & media (these will be collected/deployed separately)
+staticfiles/
+media/
+
+# VSCode / PyCharm / Editors
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

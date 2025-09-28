@@ -1,0 +1,186 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<!-- Section Héros début -->
+<section class="hero-section">
+  <!-- barre gauche avec réseaux sociaux -->
+  <div class="left-bar">
+    <div class="left-bar-content">
+      <div class="social-links">
+        {% for link in social_links %}
+        <a href="{{ link.url }}" target="_blank" title="{{ link.titre }}">
+          <img
+            class="social-icon"
+            src="{{ link.icone.url }}"
+            alt="{{ link.titre }}"
+          />
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- zone du carrousel -->
+  <div class="hero-slider owl-carousel">
+    {% for diapo in diapositives %}
+    <div class="hero-slide-item set-bg" data-setbg="{{ diapo.image.url }}">
+      <div class="slide-inner">
+        <div class="slide-content">
+          <h2>{{ diapo.title }}</h2>
+          <a href="{{ diapo.cta_link|default:'#' }}" class="site-btn sb-light">
+            {{ diapo.cta|default:"Voir le projet" }}
+          </a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <!-- si aucune diapositive -->
+    <div class="hero-slide-item set-bg" data-setbg="{% static 'img/bg.jpg' %}">
+      <div class="slide-inner">
+        <div class="slide-content">
+          <h2>Architecture Minimaliste <br />et plus encore</h2>
+          <a href="#" class="site-btn sb-light">Voir le projet</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="slide-num-holder" id="snh-1"></div>
+  <div class="hero-right-text">prekka grc</div>
+</section>
+<!-- Section Héros fin -->
+
+<!-- Intro section start -->
+<section class="intro-section pt100 pb50">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 intro-text mb-5 mb-lg-0">
+        <h2 class="sp-title">
+          Nous sommes spécialistes en <span>solutions GRC</span>
+        </h2>
+        <p>
+          PREKKA GRC est une entreprise spécialisée dans la fabrication et la
+          fourniture de panneaux et éléments en Béton Renforcé de Fibres de
+          Verre (GRC). Nous offrons des solutions innovantes, esthétiques et
+          durables pour les projets de construction et d’architecture, en
+          alliant qualité, résistance et personnalisation.
+        </p>
+        <a href="{% url 'apropos' %}" class="site-btn sb-dark"
+          >En savoir plus</a
+        >
+      </div>
+      <div class="col-lg-5 pt-4">
+        <img src="{% static 'img/intro.jpg' %}" alt="Intro image" />
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Intro section end -->
+
+<!-- Section Services -->
+<section class="service-section spad">
+  <div class="container">
+    <div class="section-title">
+      <h2>Nos Services</h2>
+      <p>
+        Découvrez notre expertise en Béton Renforcé de Fibres de Verre (GRC), au
+        service de vos projets architecturaux et urbains.
+      </p>
+    </div>
+    <div class="row">
+      {% for service in services %}
+      <div class="col-lg-4 col-md-6">
+        <div class="service-box">
+          <div class="sb-icon">
+            <div class="sb-img-icon">
+              <img src="{{ service.image.url }}" alt="{{ service.titre }}" />
+            </div>
+          </div>
+          <h3>{{ service.titre }}</h3>
+          <p>{{ service.description|truncatewords:20 }}</p>
+          <a href="{% url 'service_detail' service.slug %}" class="readmore"
+            >En savoir plus</a
+          >
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-4">
+      <a href="{% url 'service_list' %}" class="site-btn sb-dark"
+        >Voir tous les services</a
+      >
+    </div>
+  </div>
+</section>
+<!-- Fin Section Services -->
+
+<!-- CTA section start -->
+<section class="cta-section pt100 pb50">
+  <div class="cta-image-box"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 pl-lg-0 offset-lg-5 cta-content">
+        <h2 class="sp-title">Nos <span>Réalisations</span></h2>
+        <p>
+          Chez PREKKA GRC, chaque projet est une alliance entre design,
+          durabilité et innovation. Nous accompagnons les architectes,
+          promoteurs et maîtres d’ouvrage pour créer des façades modernes et des
+          éléments décoratifs uniques, adaptés à chaque vision architecturale.
+        </p>
+        <div class="cta-icons">
+          <div class="cta-img-icon">
+            <img src="{% static 'img/icon/light/1.png' %}" alt="Icon 1" />
+          </div>
+          <div class="cta-img-icon">
+            <img src="{% static 'img/icon/light/2.png' %}" alt="Icon 2" />
+          </div>
+          <div class="cta-img-icon">
+            <img src="{% static 'img/icon/color/3.png' %}" alt="Icon 3" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- CTA section end -->
+
+<!-- Projects section start -->
+<div class="projects-section pb50">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="section-title">
+          <h1>Réalisations</h1>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <ul class="projects-filter-nav">
+          <li class="btn-filter" data-filter="*">Tous</li>
+          <li class="btn-filter" data-filter=".photo">Photographie</li>
+          <li class="btn-filter" data-filter=".design">Design</li>
+          <li class="btn-filter" data-filter=".identite">Identité</li>
+          <li class="btn-filter" data-filter=".corporate">Corporate</li>
+          <li class="btn-filter" data-filter=".uxui">UI/UX</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="projects-carousel" class="projects-slider">
+    {% for real in realisations %}
+    <div
+      class="single-project set-bg {{ real.categorie }} {% if real.est_large %}large{% endif %} {% if real.est_long %}long{% endif %}"
+      data-setbg="{{ real.image.url }}"
+    >
+      <div class="project-content">
+        <h2>{{ real.titre }}</h2>
+        <p>{{ real.texte_alt }}</p>
+        <!-- Optional: link to a detailed page -->
+        <a href="#" class="seemore">Voir le projet</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- Projects section end -->
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<!-- Header section end -->
+
+<section
+  class="page-header-section set-bg"
+  data-setbg="{% static 'img/header-bg.jpg' %}"
+>
+  <div class="container">
+    <h1 class="header-title">À propos<span>.</span></h1>
+  </div>
+</section>
+
+<!-- Intro section start -->
+<section class="intro-section spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 intro-text">
+        <h1>Nous sommes un studio <span>créatif d'architecture</span></h1>
+        <div class="row">
+          <div class="col-md-6">
+            <p>
+              Pellentesque lorem dolor, malesuada eget tortor vitae, tristique
+              lacinia lectus. Pellentesque sed accumsan risus, id aliquam nulla.
+              Integer lorem risus, feugiat at mauris malesuada, accumsan
+              pellentesque ipsum. Nunc dapibus, libero ut pulvinar accumsan,
+              tortor nisl iaculis ligula.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p>
+              Curabitur finibus dolor vel lectus pretium interdum a eget ante.
+              Morbi rhoncus feugiat imperdiet. Curabitur non maximus leo. Nulla
+              in ipsum sed magna egestas bibendum. Integer in sem sagittis,
+              commodo mi sit amet, commodo nibh. Suspendisse potenti. Aliquam
+              erat volutpat.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 pt-4">
+        <img src="{% static 'img/aboutt.jpg' %}" alt="À propos" />
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Intro section end -->
+
+<!-- Section des témoignages Début -->
+<section class="section-temoignages spad">
+  <div class="boite-image-temoignages"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 offset-lg-5 contenu-cta">
+        <h1>Témoignages <span>des clients</span></h1>
+        <div class="guillemet">“</div>
+
+        <!-- Bouton pour ajouter un témoignage -->
+        <a href="{% url 'ajouter_temoignage' %}" class="btn btn-warning mb-4">
+          Ajouter votre témoignage
+        </a>
+
+        <div class="testimonials-slider" id="test-slider">
+          {% for temoignage in temoignages %}
+          <div class="item-temoignage">
+            <p>{{ temoignage.avis }}</p>
+            <h4>{{ temoignage.nom }}</h4>
+            <span>{{ temoignage.role }}</span>
+          </div>
+          {% empty %}
+          <div class="item-temoignage">
+            <p>Aucun témoignage disponible pour le moment.</p>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="slide-num-holder test-slider" id="snh-2"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Section des témoignages Fin -->
+
+<!-- Section promo Début -->
+<section class="promo-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 promo-text">
+        <h1>Besoin d'une <span>maison fabuleuse</span> ?</h1>
+        <p>
+          Pellentesque lorem dolor, malesuada eget tortor vitae, tristique
+          lacinia lectus. Pellentesque sed accumsan risus.
+        </p>
+      </div>
+      <div class="col-lg-3 text-lg-right">
+        <a href="{% url 'contact' %}" class="site-btn sb-dark mt-4">
+          Prendre contact
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Section promo Fin -->
+
+{% endblock %}

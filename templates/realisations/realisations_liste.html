@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<!-- Page header section start -->
+<section
+  class="page-header-section set-bg"
+  data-setbg="{% static 'img/header-bg.jpg' %}"
+>
+  <div class="container">
+    <h1 class="header-title">Réalisations<span>.</span></h1>
+  </div>
+</section>
+<!-- Page header section end -->
+
+<!-- Page section start -->
+<section class="realisations-section spad">
+  <div class="container">
+    <!-- Page section start -->
+    <section class="realisations-section spad">
+      <div class="container">
+        <!-- Categories pills -->
+        <div
+          class="categories-wrapper mb-10 flex flex-wrap gap-3 justify-center"
+        >
+          <span class="category-pill">All</span>
+          <span class="category-pill">Photographie</span>
+          <span class="category-pill">Design</span>
+          <span class="category-pill">Identité</span>
+          <span class="category-pill">Corporate</span>
+          <span class="category-pill">UI/UX</span>
+        </div>
+
+        <!-- Realisations list -->
+        {% for realisation in realisations %}
+        <div
+          class="realisation-row flex flex-col md:flex-row items-center bg-white shadow-lg rounded-2xl overflow-hidden mb-12"
+        >
+          <!-- Left: title + category -->
+          <div class="realisation-text flex-1 p-8">
+            <h2 class="realisation-title text-3xl font-bold mb-4">
+              {{ realisation.titre }}
+            </h2>
+            <span
+              class="realisation-category inline-block px-4 py-1 text-sm font-medium text-white bg-blue-600 rounded-full"
+            >
+              {{ realisation.get_categorie_display }}
+            </span>
+          </div>
+
+          <!-- Right: image -->
+          <div class="realisation-image flex-1">
+            <a
+              href="{{ realisation.image.url }}"
+              class="realisation-link block overflow-hidden"
+            >
+              <img
+                src="{{ realisation.image.url }}"
+                alt="{{ realisation.texte_alt }}"
+                class="realisation-img w-full h-80 object-cover transition-transform duration-300 hover:scale-105"
+              />
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    <!-- Page section end -->
+
+    {% endblock %}
+  </div>
+</section>

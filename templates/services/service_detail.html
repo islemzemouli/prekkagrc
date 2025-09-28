@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<!-- Page header section start -->
+<section
+  class="page-header-section set-bg"
+  data-setbg="{{ service.image.url }}"
+>
+  <div class="container">
+    <h1 class="header-title">{{ service.titre }}<span>.</span></h1>
+  </div>
+</section>
+<!-- Page header section end -->
+
+<!-- Service Detail section start -->
+<section class="service-detail-section spad">
+  <div class="container">
+    <div class="row">
+      <!-- Main content -->
+      <div class="col-lg-8">
+        <div class="service-detail">
+          <h2>{{ service.titre }}</h2>
+          <p>{{ service.description|linebreaks }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
