@@ -10,8 +10,8 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # --- Security ---
-SECRET_KEY = 'django-insecure-*#jszi2uaj&%)dn*x3yzjyjp*g7&($1h%py6+__!ok&0rbw^&1'
-DEBUG = False
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-default-key")
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -79,8 +79,9 @@ WSGI_APPLICATION = 'prekkagrcwebsite.wsgi.application'
 # --- Database ---
 DATABASES = {
     "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",  # fallback for local dev
+        default="postgresql://django_db_f255_user:dOkEeBn0yxUeED68mYcuhyrpIttH7DXD@dpg-d3dfoire5dus73bkq76g-a/django_db_f255",
         conn_max_age=600,
+        ssl_require=True
     )
 }
 
@@ -96,7 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'fr'
 TIME_ZONE = 'UTC'
 USE_I18N = True
-USE_L10N = True
 USE_TZ = True
 
 # --- Static files ---
@@ -104,11 +104,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Use Whitenoise for static files in production
+# Whitenoise for production static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # --- Media files ---
-# Use Cloudinary for media uploads
+# Cloudinary for media uploads
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_URL = '/media/'
 
